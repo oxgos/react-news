@@ -19,8 +19,10 @@ class PcHeader extends Component {
             userNickName: '',
             userid: 0
         }
-        this.handleClick = this.handleClick.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
+        /* 如果定义的方法不是用"属性初始化器语法" showModal = () => {},而用正常定义方法 showModal () {},则需bind(this),否则this为undefined */
+        // this.handleClick = this.handleClick.bind(this)
+        // this.handleSubmit = this.handleSubmit.bind(this)
+        // this.tabsChange = this.tabsChange.bind(this)
     }
     // 导航点击事件
     handleClick = (e) => {
@@ -50,10 +52,18 @@ class PcHeader extends Component {
             modalVisible: false,
         });
     }
+    tabsChange = (key) => {
+        if (key === '1') {
+            this.setState({action: 'login'})
+        } else {
+            this.setState({action: 'register'})
+        }
+    }
     // 表单提交事件
     handleSubmit = (e) => {
-        e.preventDefault();
-        let formData = this.props.form.getFieldsValue();
+        e.preventDefault()
+        let formData = this.props.form.getFieldsValue()
+        console.log(this.state.action)
         fetch(`http://newsapi.gugujiankong.com/Handler.ashx?action=${this.state.action}&username=${formData.userName}&&password=${formData.password}&r_userName=${formData.r_userName}&r_password=${formData.r_password}&r_confirmPassword=${formData.r_confirmPwd}`, {
             methods: 'GET'
         })
@@ -61,7 +71,10 @@ class PcHeader extends Component {
         .then(json => {
             console.log(json)
             // this.setState({userNickName: json.NickUserName, userid: json.UserId})
-            message.success("请求成功！")
+            message.success('请求成功！')
+            if (this.state.action === 'login') {
+                this.setState({isLogin: true})
+            }
             this.setModalVisible(false)
         })
         /* this.props.form.validateFields((err, values) => {
@@ -132,7 +145,7 @@ class PcHeader extends Component {
                         onOk={this.handleOk}
                         onCancel={this.handleCancel}
                     >
-                        <Tabs defaultActiveKey="1">
+                        <Tabs defaultActiveKey="1" onChange={this.tabsChange}>
                             <TabPane tab={<span><Icon type="user" />登陆</span>} key="1">
                                 <Form onSubmit={this.handleSubmit} className="login-form">
                                     <FormItem>
