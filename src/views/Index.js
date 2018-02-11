@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import PcHeader from './../components/header/PcHeader'
+import PcSection from './../components/section/PcSection'
 import MobileHeader from './../components/header/MobileHeader'
+import MobileSection from './../components/section/MobileSection'
 import Footer from './../components/footer/Footer'
 import MediaQuery from 'react-responsive'
 // import { Link } from 'react-router-dom'
-import { Button } from 'antd';
 
 class Index extends Component {
     render () {
@@ -12,14 +13,14 @@ class Index extends Component {
             <div className="index">
                 <MediaQuery query="(min-device-width: 1224px)">
                     <PcHeader />
+                    <PcSection />
+                    <Footer />
                 </MediaQuery>
                 <MediaQuery query="(max-device-width: 1224px)">
                     <MobileHeader />
+                    <MobileSection />
+                    <Footer />
                 </MediaQuery>
-                <section>
-                    <Button type="primary" htmlType="button">点我</Button>
-                </section>
-                <Footer />
             </div>
         )
     }

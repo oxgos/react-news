@@ -60,7 +60,6 @@ class MobileHeader extends Component {
         })
         .then(res => res.json())
         .then(json => {
-            console.log(json)
             // this.setState({userNickName: json.NickUserName, userid: json.UserId})
             message.success("请求成功！")
             if (this.state.action === 'login') {
@@ -78,7 +77,7 @@ class MobileHeader extends Component {
         const { getFieldDecorator } = this.props.form
         const userShow = this.state.isLogin
         ? <Link to="/">
-			<Icon type="inbox"/>
+			<Icon type="user"/>
 		  </Link>
 		: <Icon type="setting" onClick={this.login}/>
 
@@ -96,7 +95,7 @@ class MobileHeader extends Component {
                     onOk={this.handleOk}
                     onCancel={this.handleCancel}
                 >
-                    <Tabs defaultActiveKey="1" onChange={this.tabsChange}>
+                    <Tabs type="card" defaultActiveKey="1" onChange={this.tabsChange}>
                         <TabPane tab={<span><Icon type="user" />登陆</span>} key="1">
                             <Form onSubmit={this.handleSubmit} className="register-form">
                                 <FormItem>

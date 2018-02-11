@@ -3,7 +3,7 @@ import { Row, Col, Menu, Icon, Modal, Tabs } from 'antd'
 import { Form, Input, Button, message } from 'antd'
 import { Link } from 'react-router-dom'
 import logo from './logo.png'
-import './pc.css'
+import './../css/pc.css'
 
 const TabPane = Tabs.TabPane
 const FormItem = Form.Item
@@ -63,14 +63,12 @@ class PcHeader extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
         let formData = this.props.form.getFieldsValue()
-        console.log(this.state.action)
         fetch(`http://newsapi.gugujiankong.com/Handler.ashx?action=${this.state.action}&username=${formData.userName}&&password=${formData.password}&r_userName=${formData.r_userName}&r_password=${formData.r_password}&r_confirmPassword=${formData.r_confirmPwd}`, {
             methods: 'GET'
         })
         .then(res => res.json())
         .then(json => {
-            console.log(json)
-            // this.setState({userNickName: json.NickUserName, userid: json.UserId})
+            this.setState({userNickName: json.NickUserName, userid: json.UserId})
             message.success('请求成功！')
             if (this.state.action === 'login') {
                 this.setState({isLogin: true})
@@ -88,9 +86,11 @@ class PcHeader extends Component {
         const loginBtn = this.state.isLogin
         ? <Menu.Item key="logout">
             <Button type="primary" htmlType="button">{ this.state.userNickName }</Button>
+            &nbsp;&nbsp;
             <Link to="/">
                 <Button type="dashed" htmlType="button">个人中心</Button>
             </Link>
+            &nbsp;&nbsp;
             <Button type="ghost" htmlType="button">退出</Button>
           </Menu.Item>
         : <Menu.Item key="register" className="register">
