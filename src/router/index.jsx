@@ -5,7 +5,7 @@ import {
     Switch
 } from 'react-router-dom'
 import Index from './../views/Index'
-import PcNewsDetail from './../views/PcNewsDetail'
+import NewsDetail from './../views/NewsDetail'
 import About from './../views/About'
 import Topics from './../views/Topics'
 
@@ -13,7 +13,7 @@ const Basic = () => (
     <Router>
         <Switch>
             <Route exact path="/" component={Index} />
-            <Route path="/details/:uniquekey" component={PcNewsDetail} />
+            <Route path="/details/:uniquekey" component={NewsDetail} />
             <Route path="/About" component={About} />
             <Route path="/Topics" component={Topics} />
         </Switch>
