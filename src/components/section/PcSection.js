@@ -39,7 +39,7 @@ class PcSection extends Component {
                             <PcNewsBlock count={23} type="top" width="100%" bordered="false" />
                         </TabPane>
                         <TabPane tab="国际新闻" key="2">
-                            <PcNewsBlock count={25} type="guoji" width="100%" bordered="false" />
+                            <PcNewsBlock count={25} type="guoji" width="100%" bordered="false" /> 
                         </TabPane>
                     </Tabs>
                     <div>

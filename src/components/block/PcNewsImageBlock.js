@@ -3,9 +3,17 @@ import { Card } from 'antd'
 import { Link } from 'react-router-dom'
 import './../css/pc.css'
 
+/** 
+@props:
+    count 新闻数量
+    type 新闻类型
+    width Card的宽度
+    imageWidth 图片的宽度
+**/
+
 class PcNewsImageBlock extends Component {
-    constructor (props) {
-        super (props)
+    constructor () {
+        super ()
         this.state = {
             news: ''
         }
