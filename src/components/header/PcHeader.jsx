@@ -101,10 +101,10 @@ class PcHeader extends Component {
                 <Row>
                     <Col span={2}></Col>
                     <Col span={4}>
-                        <a href="/" className="logo">
+                        <Link href="/" className="logo">
                             <img src={logo} alt="logo"/>
                             <span>ReactNews</span>
-                        </a>
+                        </Link>
                     </Col>
                     <Col span={16}>
                     <Menu

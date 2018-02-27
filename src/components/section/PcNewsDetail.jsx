@@ -13,15 +13,21 @@ class PcNewsDetail extends Component {
         }
     }
     componentWillMount () {
+        this._isMounted = true
         let myFetchOptions = {
             methods: 'GET'
         }
         fetch("http://newsapi.gugujiankong.com/Handler.ashx?action=getnewsitem&uniquekey=" + this.props.uniquekey, myFetchOptions)
             .then(response => response.json())
             .then(json => {
-                this.setState({newsItem: json})
-                document.title = this.state.newsItem.title + " - React News | React 驱动的新闻平台";
+                if (this._isMounted) {
+                    this.setState({newsItem: json})
+                    document.title = this.state.newsItem.title + " - React News | React 驱动的新闻平台";
+                }
             })
+    }
+    componentUnmount () {
+        this._isMounted = false
     }
     createMarkup () {
         return {
