@@ -19,14 +19,22 @@ class PcNewsImageBlock extends Component {
         }
     }
     componentWillMount () {
+        this._isMounted = true
         let myFetchOptions = {
             methods: 'GET'
         }
         fetch("http://newsapi.gugujiankong.com/Handler.ashx?action=getnews&type=" + this.props.type + "&count=" + this.props.count, myFetchOptions)
             .then(res => res.json())
-            .then(json => this.setState({
-                news: json
-            }))
+            .then(json => {
+                if (this._isMounted) {
+                    this.setState({
+                        news: json
+                    })
+                }
+            })
+    }
+    componentUnmount () {
+        this._isMounted = false
     }
 
     render () {

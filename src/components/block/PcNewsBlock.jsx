@@ -26,7 +26,7 @@ class PcNewsBlock extends Component {
         const newsList = news.length
         ? news.map((newsItem, index) => (
             <li key={index}>
-                <Link to={`details/${newsItem.uniquekey}`} target="_blank">
+                <Link to={`details/${newsItem.uniquekey}`}>
                     { newsItem.title }
                 </Link>
             </li>

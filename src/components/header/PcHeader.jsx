@@ -24,6 +24,15 @@ class PcHeader extends Component {
         // this.handleSubmit = this.handleSubmit.bind(this)
         // this.tabsChange = this.tabsChange.bind(this)
     }
+    componentWillMount () {
+        if (window.localStorage.__UserId__) {
+            this.setState({ isLogin: true })
+            this.setState({
+                userid: window.localStorage.__UserId__,
+                userNickName: window.localStorage.__NickUserName__
+            })
+        }
+    }
     // 导航点击事件
     handleClick = (e) => {
         this.setState({
@@ -68,10 +77,15 @@ class PcHeader extends Component {
         })
         .then(res => res.json())
         .then(json => {
-            this.setState({userNickName: json.NickUserName, userid: json.UserId})
+            this.setState({
+                userNickName: json.NickUserName, 
+                userid: json.UserId
+            })
+            window.localStorage.__UserId__ = json.UserId
+            window.localStorage.__NickUserName__ = json.NickUserName
             message.success('请求成功！')
             if (this.state.action === 'login') {
-                this.setState({isLogin: true})
+                this.setState({ isLogin: true })
             }
             this.setModalVisible(false)
         })
@@ -101,7 +115,7 @@ class PcHeader extends Component {
                 <Row>
                     <Col span={2}></Col>
                     <Col span={4}>
-                        <Link href="/" className="logo">
+                        <Link to="/" className="logo">
                             <img src={logo} alt="logo"/>
                             <span>ReactNews</span>
                         </Link>

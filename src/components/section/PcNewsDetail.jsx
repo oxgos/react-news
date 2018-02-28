@@ -3,6 +3,7 @@ import { Row, Col, BackTop } from 'antd'
 import PcHeader from './../header/PcHeader'
 import Footer from './../footer/Footer'
 import PcNewsImageBlock from './../block/PcNewsImageBlock'
+import Comment from './../block/Comment'
 import './../css/pc.css'
 
 class PcNewsDetail extends Component {
@@ -42,6 +43,7 @@ class PcNewsDetail extends Component {
                     <Col span={2}></Col>
                     <Col span={14} className="container">
                         <div className="articleContainer" dangerouslySetInnerHTML={ this.createMarkup() }></div>
+                        <Comment uniquekey={ this.props.uniquekey }/>
                     </Col>
                     <Col span={6}>
                         <PcNewsImageBlock count={40} type="guoji" width="100%" cartTitle="相关新闻" imageWidth="150px" />

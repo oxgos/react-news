@@ -22,6 +22,15 @@ class MobileHeader extends Component {
         // this.login = this.login.bind(this)
         // this.handleSubmit = this.handleSubmit.bind(this)
     }
+    componentWillMount () {
+        if (window.localStorage.__UserId__) {
+            this.setState({ isLogin: true })
+            this.setState({
+                userid: window.localStorage.__UserId__,
+                userNickName: window.localStorage.__NickUserName__
+            })
+        }
+    }
     // 控制模态框
     showModal = () => {
         this.setState({
@@ -63,7 +72,9 @@ class MobileHeader extends Component {
             // this.setState({userNickName: json.NickUserName, userid: json.UserId})
             message.success("请求成功！")
             if (this.state.action === 'login') {
-                this.setState({isLogin: true})
+                this.setState({ isLogin: true })
+                window.localStorage.__UserId__ = json.UserId
+                window.localStorage.__NickUserName__ = json.NickUserName
             }
             this.setModalVisible(false)
         })
