@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Col, Menu, Icon, Tabs, message, Form, Input, Button, CheckBox, Modal, Card, notification } from 'antd'
+import { Row, Col, Form, Input, Button, Card, notification } from 'antd'
 import './../css/pc.css'
 
 const FormItem = Form.Item
@@ -30,7 +30,7 @@ class Comment extends Component {
     componentUnmount () {
         this._isMounted = false
     }
-
+    // 提交评论
     handleSubmit = (e) => {
 		e.preventDefault();
 		var myFetchOptions = {
@@ -42,13 +42,28 @@ class Comment extends Component {
             .then(json => {
 			    this.componentWillMount()
 		    })
-	}
+    }
+    // 添加收藏
+    addUserColection = (e) => {
+        var myFetchOptions = {
+            method: 'GET'
+        }
+        fetch(`http://newsapi.gugujiankong.com/Handler.ashx?action=uc&userid=${ window.localStorage.__UserId__ }&uniquekey=${ this.props.uniquekey }`, myFetchOptions)
+            .then(res => res.json())
+            .then(json => {
+                notification.open({
+                    message: 'React News提醒',
+                    description: '新闻收藏成功',
+                  });
+            })
+    }
+
     render () {
         const { getFieldDecorator } = this.props.form
         const { comments } = this.state
         const commentList = comments.length
             ? comments.map((comment, index) => (
-                <Card key={ index } title={ comment.UserName } extra={ <a href="#" >发布于 { comment.datetime }</a> }>
+                <Card key={ index } title={ comment.UserName } extra={ <a href="###" >发布于 { comment.datetime }</a> }>
                     <p>{ comment.Comments }</p>
                 </Card>
             ))
@@ -65,6 +80,8 @@ class Comment extends Component {
                                 ) }
                             </FormItem>
                             <Button type="primary" htmlType="submit">提交评论</Button>
+                            &nbsp;&nbsp;
+                            <Button type="danger" htmlType="button" onClick={this.addUserColection}>收藏新闻</Button>
                         </Form>
                     </Col>
                 </Row>

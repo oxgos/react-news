@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Row, Col, BackTop } from 'antd'
 import MobileHeader from './../header/MobileHeader'
 import Footer from './../footer/Footer'
+import Comment from './../block/Comment'
 import './../css/mobile.css'
 
 class MoblieNewsDetail extends Component {
@@ -41,6 +42,8 @@ class MoblieNewsDetail extends Component {
                     <Row>
                         <Col span={24} className="container">
                             <div className="articleContainer" dangerouslySetInnerHTML={ this.createMarkup() }></div>
+                            <hr/>
+                            <Comment uniquekey={ this.props.uniquekey }/>
                         </Col>
                     </Row>
                 </div>
