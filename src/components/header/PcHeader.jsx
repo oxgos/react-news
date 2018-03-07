@@ -101,7 +101,7 @@ class PcHeader extends Component {
         ? <Menu.Item key="logout">
             <Button type="primary" htmlType="button">{ this.state.userNickName }</Button>
             &nbsp;&nbsp;
-            <Link to="/">
+            <Link to="/usercenter">
                 <Button type="dashed" htmlType="button">个人中心</Button>
             </Link>
             &nbsp;&nbsp;

@@ -87,7 +87,7 @@ class MobileHeader extends Component {
     render () {
         const { getFieldDecorator } = this.props.form
         const userShow = this.state.isLogin
-        ? <Link to="/">
+        ? <Link to="/usercenter">
 			<Icon type="user"/>
 		  </Link>
 		: <Icon type="setting" onClick={this.login}/>
